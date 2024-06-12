@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Detalles del Participante{% endblock %}
+{% block content %}
+<h2 class="my-4">{{ object.nombre }} {{ object.apellido }}</h2>
+<p><strong>Documento:</strong> {{ object.documento }}</p>
+<p><strong>Email:</strong> {{ object.email }}</p>
+<p><strong>Estado:</strong> {% if object.estado %} Activo {% else %} Inactivo {% endif %}</p>
+<h3 class="my-4">Eventos Inscritos</h3>
+<ul class="list-group">
+    {% for evento in object.evento_set.all %}
+    <li class="list-group-item">{{ evento.nombre }}</li>
+    {% endfor %}
+</ul>
+<div class="mt-4">
+    <a href="{% url 'participantes:participante_update' object.pk %}" class="btn btn-warning btn-space">Editar</a>
+    <a href="{% url 'participantes:participante_delete' object.pk %}" class="btn btn-danger btn-space btn-delete">Eliminar</a>
+    <a href="{% url 'participantes:participante_list' %}" class="btn btn-secondary">Volver a la lista</a>
+</div>
+{% endblock %}

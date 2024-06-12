@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Detalles del Evento{% endblock %}
+{% block content %}
+<h2 class="my-4">{{ object.nombre }}</h2>
+<p><strong>Descripción:</strong> {{ object.descripcion }}</p>
+<p><strong>Fecha:</strong> {{ object.fecha }}</p>
+<p><strong>Hora:</strong> {{ object.hora }}</p>
+<p><strong>Ubicación:</strong> {{ object.ubicacion }}</p>
+<h3 class="my-4">Participantes</h3>
+<ul class="list-group">
+    {% for participante in object.participantes.all %}
+    <li class="list-group-item">{{ participante.nombre }} {{ participante.apellido }}</li>
+    {% endfor %}
+</ul>
+<div class="mt-4">
+    <a href="{% url 'eventos:evento_update' object.pk %}" class="btn btn-warning btn-space">Editar</a>
+    <a href="{% url 'eventos:evento_delete' object.pk %}" class="btn btn-danger btn-space btn-delete">Eliminar</a>
+    <a href="{% url 'eventos:evento_list' %}" class="btn btn-secondary">Volver a la lista</a>
+</div>
+{% endblock %}
