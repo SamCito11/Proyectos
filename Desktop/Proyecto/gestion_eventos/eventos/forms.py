@@ -1,7 +1,11 @@
 from django import forms
 from .models import Evento
+from participantes.models import Participante
+from django import forms
+from .models import Evento
 
 class EventoForm(forms.ModelForm):
+    participantes = forms.ModelMultipleChoiceField(queryset=Participante.objects.all(), widget=forms.SelectMultiple(attrs={'class': 'form-control'}))
     class Meta:
         model = Evento
         fields = ['nombre', 'descripcion', 'fecha', 'hora', 'ubicacion']

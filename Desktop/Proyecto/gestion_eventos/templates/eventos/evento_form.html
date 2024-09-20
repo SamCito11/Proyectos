@@ -27,8 +27,17 @@
                     <label style="font-weight: bold;">Ubicación</label>
                     {{ form.ubicacion }}
                 </div>
-                <button type="submit" method="post" style="background-color: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; margin-top: 10px;">Guardar</button>
-                <a href="{% url 'eventos:evento_list' %}" class="btn btn-secondary">Volver a la lista</a>
+                <div style="margin-bottom: 20px;">
+                    <label style="font-weight: bold;">Participantes</label>
+                    <select name="participantes" class="form-select form-select-lg" multiple>
+                        {% for participante in participantes %}
+                            <option value="{{ participante.pk }}">{{ participante.nombre }} {{ participante.apellido }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <a href="{% url 'eventos:evento-list' %}" class="btn btn-secondary">Volver a la lista</a>
             </form>
         </div>
     </div>
